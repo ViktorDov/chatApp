@@ -53,9 +53,4 @@ class MainViewModel extends ChangeNotifier {
   void createUser() {
     userService.generateUserId();
   }
-
-  void getChatUserId(String chatUserId) {
-    final id = int.parse(chatUserId);
-    userService.chatUserId = id;
-  }
 }

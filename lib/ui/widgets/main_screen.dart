@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/domain/models/chat.dart';
-import 'package:flutter_chat_app/ui/view_models/home_view_model.dart';
+import 'package:flutter_chat_app/ui/view_models/main_screen_view_model.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
@@ -107,8 +107,6 @@ class SearchIdTextFieldWidget extends StatelessWidget {
                 if (value.isNotEmpty) {
                   final chatSArguments = Chat(
                       myUserId: userId, chatUserId: value, userName: userName);
-
-                  MainViewModel().getChatUserId(value); // check this function
                   Navigator.of(context).popAndPushNamed('/chat_screen',
                       arguments: chatSArguments);
                 } else {
