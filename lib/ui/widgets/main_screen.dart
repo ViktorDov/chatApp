@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/domain/models/chat.dart';
 import 'package:flutter_chat_app/ui/view_models/home_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -75,6 +76,7 @@ class SearchIdTextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userName = context.select((MainViewModel value) => value.userName);
+    final userId = context.watch<MainViewModel>().userIdTitle;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 16),
@@ -103,9 +105,12 @@ class SearchIdTextFieldWidget extends StatelessWidget {
               ),
               onSubmitted: (value) {
                 if (value.isNotEmpty) {
-                  MainViewModel().getChatUserId(value);
-                  Navigator.of(context)
-                      .popAndPushNamed('/chat_screen', arguments: value);
+                  final chatSArguments = Chat(
+                      myUserId: userId, chatUserId: value, userName: userName);
+
+                  MainViewModel().getChatUserId(value); // check this function
+                  Navigator.of(context).popAndPushNamed('/chat_screen',
+                      arguments: chatSArguments);
                 } else {
                   return;
                 }

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/domain/data_provider/firebase_data_provider.dart';
+import 'package:flutter_chat_app/domain/models/chat.dart';
 import 'package:flutter_chat_app/domain/models/message.dart';
 import 'package:flutter_chat_app/ui/view_models/chat_screen_view_model.dart';
 
 import 'message_car.dart';
 
 class ChatScreenWidget extends StatefulWidget {
-  final String chatUserId;
-  const ChatScreenWidget({super.key, required this.chatUserId});
+  final Chat chatSetings;
+  const ChatScreenWidget({super.key, required this.chatSetings});
 
   @override
   State<ChatScreenWidget> createState() => _ChatScreenWidgetState();
@@ -23,7 +24,7 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
   }
 
   Future<void> _init() async {
-    _model = ChatScreenModel(chatReciverUserId: widget.chatUserId);
+    _model = ChatScreenModel(chatSetings: widget.chatSetings);
     await _model.initialize();
     setState(() {});
   }

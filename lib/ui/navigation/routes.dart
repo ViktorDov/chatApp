@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/domain/models/chat.dart';
 import 'package:flutter_chat_app/ui/widgets/chat_screen_widget.dart';
 import 'package:flutter_chat_app/ui/widgets/main_screen.dart';
 
@@ -16,9 +17,9 @@ class MainNavigation {
   Route<Object> onGenerateRouteSetings(RouteSettings settings) {
     switch (settings.name) {
       case NavigationRoutesName.chatScreen:
-        final chatUserId = settings.arguments as String;
+        final chatSetings = settings.arguments as Chat;
         return MaterialPageRoute(
-          builder: (context) => ChatScreenWidget(chatUserId: chatUserId),
+          builder: (context) => ChatScreenWidget(chatSetings: chatSetings),
         );
       default:
         const widget = Text('Errror!!!');
