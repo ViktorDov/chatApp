@@ -1,5 +1,5 @@
 class Chat {
-  int myUserId;
+  String myUserId;
   String chatUserId;
   String userName;
 
@@ -8,7 +8,7 @@ class Chat {
       required this.chatUserId,
       required this.userName});
 
-  Chat copyWith({int? myUserId, String? chatUserId, String? userName}) {
+  Chat copyWith({String? myUserId, String? chatUserId, String? userName}) {
     return Chat(
         myUserId: myUserId ?? this.myUserId,
         chatUserId: chatUserId ?? this.chatUserId,

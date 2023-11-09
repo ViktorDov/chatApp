@@ -30,7 +30,7 @@ class FirebaseService {
   }
 
   Future<void> sendMessage(String ms, String chatId, String userName,
-      int senderId, int reciverId) async {
+      String senderId, String reciverId) async {
     final read = _createTimeString();
     // final time = DateTime.now().microsecond.toString();
 

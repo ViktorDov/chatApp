@@ -6,8 +6,8 @@ class Message {
       required this.send,
       required this.read,
       required this.senderNameUser});
-  late final int reciverId;
-  late final int senderId;
+  late final String reciverId;
+  late final String senderId;
   late final String read;
   late final String message;
   late final String send;

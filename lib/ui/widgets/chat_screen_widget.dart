@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_app/domain/data_provider/firebase_data_provider.dart';
 import 'package:flutter_chat_app/domain/models/chat.dart';
 import 'package:flutter_chat_app/domain/models/message.dart';
 import 'package:flutter_chat_app/ui/view_models/chat_screen_view_model.dart';
@@ -20,12 +19,7 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
   @override
   void initState() {
     super.initState();
-    _init();
-  }
-
-  Future<void> _init() async {
     _model = ChatScreenModel(chatSetings: widget.chatSetings);
-    await _model.initialize();
     setState(() {});
   }
 
@@ -47,13 +41,11 @@ class ChatScreenWidgetBody extends StatefulWidget {
 
 class _ChatScreenWidgetBodyState extends State<ChatScreenWidgetBody> {
   final _textController = TextEditingController();
-
   var _listMessage = <Message>[];
-  final firebaseDataProvider = FirebaseDataProvider();
 
   @override
   Widget build(BuildContext context) {
-    final model = ChatScreenWidgetProvider.watch(context)!.model;
+    final _model = ChatScreenWidgetProvider.watch(context)!.model;
     const image = AssetImage('images/userAvatar.png');
     return Scaffold(
       appBar: AppBar(
@@ -78,7 +70,7 @@ class _ChatScreenWidgetBodyState extends State<ChatScreenWidgetBody> {
         children: [
           Expanded(
             child: StreamBuilder(
-              stream: model.getAllMessages(),
+              stream: _model.getAllMessages(),
               builder: ((context, snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
@@ -125,7 +117,7 @@ class _ChatScreenWidgetBodyState extends State<ChatScreenWidgetBody> {
                 IconButton(
                     onPressed: () {
                       if (_textController.text.isNotEmpty) {
-                        model.sendMessage(_textController.text);
+                        _model.sendMessage(_textController.text);
                         _textController.text = '';
                       } else {
                         return;
