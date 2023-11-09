@@ -105,10 +105,11 @@ class SearchIdTextFieldWidget extends StatelessWidget {
               ),
               onSubmitted: (value) {
                 if (value.isNotEmpty) {
-                  final chatSArguments = Chat(
+                  final chatArguments = Chat(
                       myUserId: userId, chatUserId: value, userName: userName);
+
                   Navigator.of(context).popAndPushNamed('/chat_screen',
-                      arguments: chatSArguments);
+                      arguments: chatArguments);
                 } else {
                   return;
                 }
