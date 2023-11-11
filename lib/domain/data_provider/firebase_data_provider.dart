@@ -9,12 +9,9 @@ class FirebaseDataProvider {
   }
 
   Future<void> sendMessage(Message message, String time, String chatId) async {
+    final sendTime = DateTime.now().millisecondsSinceEpoch.toString();
     final ref = firestore.collection('chats/$chatId/messages/');
-    await ref.doc(time).set(message.toJson().cast());
-  }
-
-  Stream<QuerySnapshot<Map<dynamic, dynamic>>> readChatMessages(String chatId) {
-    return firestore.collection('chats/$chatId/messages/').snapshots();
+    await ref.doc(sendTime).set({'time': sendTime, ...message.toJson()});
   }
 
   // Future<void> postMessage(

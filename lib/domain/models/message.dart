@@ -13,7 +13,7 @@ class Message {
   late final String send;
   late final String senderNameUser;
 
-  Message.fromJson(Map<dynamic, dynamic> json) {
+  Message.fromJson(Map<String, dynamic> json) {
     reciverId = json['reciverId'];
     senderId = json['senderId'];
     message = json['message'];

@@ -79,9 +79,11 @@ class _ChatScreenWidgetBodyState extends State<ChatScreenWidgetBody> {
                   case ConnectionState.active:
                   case ConnectionState.done:
                     final data = snapshot.data?.docs;
-                    _listMessage =
-                        data?.map((e) => Message.fromJson(e.data())).toList() ??
-                            [];
+                    _listMessage = data
+                            ?.map((e) => Message.fromJson(e.data()))
+                            .toList()
+                            .cast<Message>() ??
+                        [];
                     if (_listMessage.isNotEmpty) {
                       return ListView.builder(
                         itemCount: _listMessage.length,
