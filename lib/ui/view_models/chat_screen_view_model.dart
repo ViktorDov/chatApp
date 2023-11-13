@@ -10,19 +10,19 @@ class ChatScreenModel extends ChangeNotifier {
 
   ChatScreenModel({required this.chatSetings});
 
-  String _createChatId() {
+  String _getChatId() {
     return chatSetings.myUserId.hashCode <= chatSetings.chatUserId.hashCode
         ? '${chatSetings.myUserId}_${chatSetings.chatUserId}'
         : '${chatSetings.chatUserId}_${chatSetings.myUserId}';
   }
 
   Stream getAllMessages() {
-    final chatId = _createChatId();
+    final chatId = _getChatId();
     return _firebaseDataProvider.getAllMessages(chatId);
   }
 
   Future<void> sendMessage(String message) async {
-    final chatId = _createChatId();
+    final chatId = _getChatId();
     await _firebaseService.sendMessage(
       message,
       chatId,

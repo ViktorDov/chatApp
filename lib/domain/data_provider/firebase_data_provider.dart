@@ -13,27 +13,4 @@ class FirebaseDataProvider {
     final ref = firestore.collection('chats/$chatId/messages/');
     await ref.doc(sendTime).set({'time': sendTime, ...message.toJson()});
   }
-
-  // Future<void> postMessage(
-  //   String ms,
-  //   String time,
-  //   String chatId,
-  //   String senderNameUser,
-  //   int reciverId,
-  //   int senderId,
-  // ) async {
-  //   final sendTime = DateTime.now().millisecondsSinceEpoch.toString();
-
-  //   final message = Message(
-  //     reciverId: reciverId,
-  //     senderId: senderId,
-  //     message: ms,
-  //     send: sendTime,
-  //     read: '',
-  //     senderNameUser: senderNameUser,
-  //   );
-
-  //   // final ref = firestore.collection('chats/$chatId/messages/');
-  // await ref.doc(time).set(message.toJson().cast());
-  // }
 }
