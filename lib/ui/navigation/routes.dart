@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_app/domain/models/chat.dart';
+import 'package:flutter_chat_app/domain/entity/chat.dart';
 import 'package:flutter_chat_app/ui/widgets/chat_screen_widget.dart';
 import 'package:flutter_chat_app/ui/widgets/main_screen.dart';
 

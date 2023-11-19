@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_chat_app/domain/models/message.dart';
+import 'package:flutter_chat_app/domain/entity/message.dart';
 
 class FirebaseDataProvider {
   final firestore = FirebaseFirestore.instance;
 
-  Stream<QuerySnapshot<Map<dynamic, dynamic>>> getAllMessages(String chatId) {
-    return firestore.collection('chats/$chatId/messages/').snapshots();
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllMessages(String chatId) {
+    return firestore
+        .collection('chats/$chatId/messages/')
+        .orderBy('time')
+        .snapshots()
+        .handleError((error) => print("Error getting messages: $error"));
   }
 
   Future<void> sendMessage(Message message, String time, String chatId) async {

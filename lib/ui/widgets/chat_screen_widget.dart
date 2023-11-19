@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_app/domain/models/chat.dart';
-import 'package:flutter_chat_app/domain/models/message.dart';
+import 'package:flutter_chat_app/domain/entity/chat.dart';
+import 'package:flutter_chat_app/domain/entity/message.dart';
 import 'package:flutter_chat_app/ui/view_models/chat_screen_view_model.dart';
 
-import 'message_car.dart';
+import 'message_card.dart';
 
 class ChatScreenWidget extends StatefulWidget {
   final Chat chatSetings;
@@ -74,10 +74,14 @@ class _ChatScreenWidgetBodyState extends State<ChatScreenWidgetBody> {
               builder: ((context, snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
                   case ConnectionState.none:
                     return const SizedBox();
                   case ConnectionState.active:
                   case ConnectionState.done:
+                    print('!!!!!!!!!!!! $_listMessage');
                     final data = snapshot.data?.docs;
                     _listMessage = data
                             ?.map((e) => Message.fromJson(e.data()))
@@ -88,7 +92,10 @@ class _ChatScreenWidgetBodyState extends State<ChatScreenWidgetBody> {
                       return ListView.builder(
                         itemCount: _listMessage.length,
                         itemBuilder: (context, index) {
-                          return MessageCard(message: _listMessage[index]);
+                          return MessageCard(
+                            message: _listMessage[index],
+                            chatSeting: _model.chatSetings,
+                          );
                         },
                       );
                     } else {

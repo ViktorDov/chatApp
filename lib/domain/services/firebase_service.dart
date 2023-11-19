@@ -1,5 +1,5 @@
 import 'package:flutter_chat_app/domain/data_provider/firebase_data_provider.dart';
-import 'package:flutter_chat_app/domain/models/message.dart';
+import 'package:flutter_chat_app/domain/entity/message.dart';
 import 'package:flutter_chat_app/domain/services/user_service.dart';
 
 class FirebaseService {
@@ -21,12 +21,6 @@ class FirebaseService {
     final minutes = DateTime.now().minute.toString();
 
     return '$hour:$minutes';
-  }
-
-  _getChatId(String chatUserId) {
-    return myUserId.hashCode <= userService.chatUserId.hashCode
-        ? '${myUserId}_${userService.chatUserId}'
-        : '${userService.chatUserId}_$myUserId';
   }
 
   Future<void> sendMessage(String ms, String chatId, String userName,

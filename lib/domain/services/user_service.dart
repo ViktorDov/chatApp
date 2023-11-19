@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import '../data_provider/user_data_provider.dart';
-import '../models/user.dart';
+import '../entity/user.dart';
 
 class UserService {
   final userDataProvider = UserDataProvider();

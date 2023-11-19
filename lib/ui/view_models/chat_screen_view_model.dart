@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_chat_app/domain/data_provider/firebase_data_provider.dart';
-import 'package:flutter_chat_app/domain/models/chat.dart';
+import 'package:flutter_chat_app/domain/entity/chat.dart';
 import 'package:flutter_chat_app/domain/services/firebase_service.dart';
 
 class ChatScreenModel extends ChangeNotifier {

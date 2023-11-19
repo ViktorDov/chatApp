@@ -14,8 +14,8 @@ class Message {
   late final String senderNameUser;
 
   Message.fromJson(Map<String, dynamic> json) {
-    reciverId = json['reciverId'];
-    senderId = json['senderId'];
+    reciverId = json['reciverId'].toString();
+    senderId = json['senderId'].toString();
     message = json['message'];
     send = json['send'];
     read = json['read'];
